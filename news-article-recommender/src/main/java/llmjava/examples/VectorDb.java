@@ -22,6 +22,8 @@ import java.util.List;
 
 /**
  * Refer to for instructions on how to setup Elasticsearch Java client https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/getting-started-java.html
+ *
+ * Create an API client on kibana at http://localhost:5601/app/management/security/api_keys/
  */
 public class VectorDb {
     private final ElasticsearchClient esClient;
@@ -119,23 +121,5 @@ public class VectorDb {
 
     public void shutdown() {
         esClient.shutdown();
-    }
-
-    /**
-     * Create an API client on kibana at http://localhost:5601/app/management/security/api_keys/
-     */
-    public static void main(String[] args) {
-        // URL and API key
-        String serverUrl = "http://localhost:9200";
-        String apiKey = "";
-
-        VectorDb client = new VectorDb(serverUrl, apiKey);
-        client.setup("news", "news_index_mappings.json");
-
-        Article product = new Article("bk-1", "City bike", null);
-        client.addDocument("news", product);
-
-        client.teardown("news");
-        client.shutdown();
     }
 }

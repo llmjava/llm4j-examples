@@ -55,3 +55,21 @@ Note that the call may fail if the text is very long, which is the case for most
 ```java
     io.grpc.StatusRuntimeException: INVALID_ARGUMENT: Request payload size exceeds the limit: 10000 bytes
 ```
+
+## Recommending articles
+We sample one article from the news dataset, get its [embeddings](https://www.elastic.co/guide/en/elasticsearch/reference/current/dense-vector.html) and then ask Elasticsearch with [KNN query](https://www.elastic.co/guide/en/elasticsearch/reference/current/knn-search.html) for similar articles which have the closest embeddings.
+
+In Java, the Elasticsearch-based recommendation query looks like this
+```java
+SearchRequest request = new SearchRequest.Builder()
+    .index(indexName)
+    .knn(builder -> builder
+        .k(3)
+        .numCandidates(10)
+        .field("embeddings")
+        .queryVector(embeddings)
+    )
+    .fields(new FieldAndFormat.Builder().field("title").build())
+    .build();
+SearchResponse<Article> response = esClient.search(request, Article.class);
+```
