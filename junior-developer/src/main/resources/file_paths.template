@@ -1,0 +1,7 @@
+${SYSTEM_PROMPT}
+
+Given the prompt and the plan, return a list of strings corresponding to the new files that will be generated.
+
+ I want a: ${USER_PROMPT}
+
+ The plan we have agreed on is: ${PLAN}

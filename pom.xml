@@ -14,6 +14,7 @@
 
   <modules>
     <module>news-article-recommender</module>
+    <module>junior-developer</module>
   </modules>
 
 
@@ -22,6 +23,11 @@
     <dependency>
       <groupId>com.github.llmjava</groupId>
       <artifactId>news-article-recommender</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.llmjava</groupId>
+      <artifactId>junior-developer</artifactId>
       <version>${project.version}</version>
     </dependency>
 
