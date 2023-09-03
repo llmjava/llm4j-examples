@@ -21,8 +21,23 @@ public class App {
             "When writing code, add comments to explain what you intend to do and why it aligns with the program plan and specific instructions from the original prompt.";
 
     private final LanguageModel llm;
+    private Boolean debug = true;
     public App(LanguageModel llm) {
         this.llm = llm;
+    }
+
+    private String runStep(String name, String prompt) {
+        if(debug) {
+            System.out.println("------------------------------- "+name+"  Prompt -------------------------------");
+            System.out.println(prompt);
+        }
+        String response = llm.process(prompt);
+        if(debug) {
+            System.out.println("------------------------------- "+name+" Response ------------------------------");
+            System.out.println(response);
+            System.out.println("---------------------------------------------------------------------------");
+        }
+        return response;
     }
 
     public String generatePlan(String prompt) {
@@ -31,8 +46,7 @@ public class App {
         params.put("SYSTEM_PROMPT", SYSTEM_PROMPT);
         params.put("USER_PROMPT", prompt);
         String plan_prompt = StringSubstitutor.replace(plan_prompt_template, params, "${", "}");
-
-        return llm.process(plan_prompt);
+        return runStep("Plan", plan_prompt);
     }
 
     public String listFilePaths(String prompt, String plan) {
@@ -42,8 +56,7 @@ public class App {
         params.put("USER_PROMPT", prompt);
         params.put("PLAN", plan);
         String list_prompt = StringSubstitutor.replace(plan_prompt_template, params, "${", "}");
-
-        return llm.process(list_prompt);
+        return runStep("List Files", list_prompt);
     }
 
     public String readTemplate(String fileName) {
@@ -65,11 +78,11 @@ public class App {
         // Setup configuration
         Map<String, String> configMap = new HashMap<String, String>(){{
             put("palm.apiKey", "${env:PALM_API_KEY}");
-            put("topK", "3");
-            put("topP", "0.4");
-            put("temperature", "0.8");
+            put("topK", "40");
+            put("topP", "0.95");
+            put("temperature", "0.75");
             put("maxNewTokens", "1024");
-            put("maxOutputTokens", "2048");
+            put("maxOutputTokens", "1024");
             put("candidateCount", "1");
         }};
         Configuration config = new MapConfiguration(configMap);
@@ -89,9 +102,7 @@ public class App {
                 "  It is meant to run in Chrome browser, so don't use anything that is not supported by Chrome, and don't use the import and export keywords.";
 
         String plan = app.generatePlan(USER_PROMPT);
-        System.out.println(plan);
-        
+
         String paths = app.listFilePaths(USER_PROMPT, plan);
-        System.out.println(paths);
     }
 }

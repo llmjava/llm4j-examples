@@ -2,6 +2,7 @@ ${SYSTEM_PROMPT}
 
 In response to the user's prompt, write a plan using GitHub Markdown syntax. Begin with a YAML description of the new files that will be created.
 In this plan, please name and briefly describe the structure of code that will be generated, including, for each file we are generating, what variables they export, data schemas, id names of every DOM elements that javascript functions will use, message names, and function names.
-Respond only with plans following the above schema.
+Respond only with plans following the above schema without providing actual file content.
 
- the app prompt is: ${USER_PROMPT}
+--
+the app prompt is: ${USER_PROMPT}
