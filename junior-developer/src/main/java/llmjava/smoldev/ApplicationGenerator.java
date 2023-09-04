@@ -2,76 +2,42 @@ package llmjava.smoldev;
 
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.MapConfiguration;
-import org.apache.commons.text.StringSubstitutor;
 import org.llm4j.api.LLM4J;
 import org.llm4j.api.LanguageModel;
 import org.llm4j.palm.PaLMLanguageModel;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class App {
+public class ApplicationGenerator {
 
     static final String SYSTEM_PROMPT = "You are a top tier AI developer who is trying to write a program that will generate code for the user based on their intent.\n" +
             "Do not leave any todos, fully implement every feature requested.\n" +
             "\n" +
             "When writing code, add comments to explain what you intend to do and why it aligns with the program plan and specific instructions from the original prompt.";
 
-    private final LanguageModel llm;
+    private final LLMUtils utils;
     private Boolean debug = true;
-    public App(LanguageModel llm) {
-        this.llm = llm;
-    }
-
-    private String runStep(String name, String prompt) {
-        if(debug) {
-            System.out.println("------------------------------- "+name+"  Prompt -------------------------------");
-            System.out.println(prompt);
-        }
-        String response = llm.process(prompt);
-        if(debug) {
-            System.out.println("------------------------------- "+name+" Response ------------------------------");
-            System.out.println(response);
-            System.out.println("---------------------------------------------------------------------------");
-        }
-        return response;
+    public ApplicationGenerator(LanguageModel llm) {
+        this.utils = new LLMUtils(llm);
     }
 
     public String generatePlan(String prompt) {
-        String plan_prompt_template = readTemplate("plan_prompt.template");
-        Map<String, Object> params = new HashMap<>();
-        params.put("SYSTEM_PROMPT", SYSTEM_PROMPT);
-        params.put("USER_PROMPT", prompt);
-        String plan_prompt = StringSubstitutor.replace(plan_prompt_template, params, "${", "}");
-        return runStep("Plan", plan_prompt);
+        String plan_prompt = new PromptTemplate()
+                .withFile("plan_prompt.template")
+                .withParam("SYSTEM_PROMPT", SYSTEM_PROMPT)
+                .withParam("USER_PROMPT", prompt)
+                .build();
+        return utils.runStep("Plan", plan_prompt);
     }
 
     public String listFilePaths(String prompt, String plan) {
-        String plan_prompt_template = readTemplate("file_paths.template");
-        Map<String, Object> params = new HashMap<>();
-        params.put("SYSTEM_PROMPT", SYSTEM_PROMPT);
-        params.put("USER_PROMPT", prompt);
-        params.put("PLAN", plan);
-        String list_prompt = StringSubstitutor.replace(plan_prompt_template, params, "${", "}");
-        return runStep("List Files", list_prompt);
-    }
-
-    public String readTemplate(String fileName) {
-        String template = "";
-        try {
-            ClassLoader classloader = getClass().getClassLoader();
-            Path path = Paths.get(classloader.getResource(fileName).toURI());
-            for(String line: Files.readAllLines(path)) {
-                template += "\n" + line;
-            }
-            template = template.substring("\n".length());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return template;
+        String list_prompt = new PromptTemplate()
+                .withFile("file_paths.template")
+                .withParam("SYSTEM_PROMPT", SYSTEM_PROMPT)
+                .withParam("USER_PROMPT", prompt)
+                .withParam("PLAN", plan)
+                .build();
+        return utils.runStep("List Files", list_prompt);
     }
 
     public static void main(String[] args) {
@@ -90,7 +56,7 @@ public class App {
         // Setup language model
         LanguageModel llm = LLM4J.getLanguageModel(config, new PaLMLanguageModel.Builder());
 
-        App app = new App(llm);
+        ApplicationGenerator app = new ApplicationGenerator(llm);
         String USER_PROMPT = "a simple JavaScript/HTML/CSS/Canvas app that is a one player game of PONG. \n" +
                 "  The left paddle is controlled by the player, following where the mouse goes.\n" +
                 "  The right paddle is controlled by a simple AI algorithm, which slowly moves the paddle toward the ball at every frame, with some probability of error.\n" +
