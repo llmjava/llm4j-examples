@@ -21,7 +21,7 @@ import llmjava.wikipedia.Document;
 
 /*
  */
-public class DatasetGenerationApp {
+public class DataGeneration {
 
     public static LanguageModel initLLM() {
         // Setup configuration
