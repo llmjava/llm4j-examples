@@ -1,0 +1,13 @@
+You will be provided with TEXT from wikipedia. Output a list of multiple choice questions with 3 choices and answers from the TEXT. Format your output in a one line JSON object.
+You should tell me which one of your proposed options is right by assigning the corresponding option's key label in the 'answer' field.
+
+The question, the answer and question answer options should be broad, challenging, long, detailed and based on the TEXT provided.
+
+Only output the list of objects, with nothing else.
+
+{delimiter}
+TEXT: The ultraviolet catastrophe, also called the Rayleigh–Jeans catastrophe, was the prediction of late 19th century/early 20th century classical physics that an ideal black body at thermal equilibrium would emit an unbounded quantity of energy as wavelength decreased into the ultraviolet range.[1]: 6–7  The term "ultraviolet catastrophe" was first used in 1911 by Paul Ehrenfest,[2] but the concept originated with the 1900 statistical derivation of the Rayleigh–Jeans law. The "ultraviolet catastrophe" is the expression of the fact that the formula misbehaves at higher frequencies.
+{"question": "What is the 'ultraviolet catastrophe'?", "A": "It is a phenomenon that occurs only in multi-mode vibration.", "B": "It is the misbehavior of a formula for higher frequencies.", "C": "It is a flaw in classical physics that results in the misallocation of energy.", "answer": "B"}
+
+{delimiter}
+TEXT: {TEXT}

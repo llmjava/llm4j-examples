@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.github.llmjava</groupId>
+  <artifactId>palm-examples</artifactId>
+  <packaging>jar</packaging>
+  <version>0.0-SNAPSHOT</version>
+
+  <name>Google PaLM with LLm4J examples</name>
+  <description>Examples showcasing how to use LLM4J and Google PaLM</description>
+  <url>http://github.com/llmjava/llm4j-examples</url>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <commons.version>2.9.0</commons.version>
+    <commons-text.version>1.10.0</commons-text.version>
+
+    <palm.version>0.0.0-SNAPSHOT</palm.version>
+    <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
+    <gapi.version>2.32.0</gapi.version>
+    <llm4j.version>8389ba8fca</llm4j.version>
+    <wikipedia4j.version>0.2</wikipedia4j.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-text</artifactId>
+      <version>${commons-text.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.llmjava</groupId>
+      <artifactId>llm4j</artifactId>
+      <version>${llm4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.llmjava</groupId>
+      <artifactId>wikipedia4j</artifactId>
+      <version>${wikipedia4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-configuration2</artifactId>
+      <version>${commons.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>gapic-google-cloud-ai-generativelanguage-v1beta2-java</artifactId>
+      <version>${palm.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/gapic-google-cloud-ai-generativelanguage-v1beta2-java-0.0.0-SNAPSHOT.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>grpc-google-cloud-ai-generativelanguage-v1beta2-java</artifactId>
+      <version>${palm.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/grpc-google-cloud-ai-generativelanguage-v1beta2-java-0.0.0-SNAPSHOT.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>proto-google-cloud-ai-generativelanguage-v1beta2-java</artifactId>
+      <version>${palm.version}</version>
+      <scope>system</scope>
+      <systemPath>${basedir}/lib/proto-google-cloud-ai-generativelanguage-v1beta2-java-0.0.0-SNAPSHOT.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.api</groupId>
+      <artifactId>gax</artifactId>
+      <version>${gapi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.api</groupId>
+      <artifactId>gax-grpc</artifactId>
+      <version>${gapi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-okhttp</artifactId>
+      <version>${grpc-okhttp.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.5</version>
+    </dependency>
+    <dependency>
+		  <groupId>org.projectlombok</groupId>
+		  <artifactId>lombok</artifactId>
+		  <version>1.18.30</version>
+		  <scope>provided</scope>
+	  </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/llmjava/smoldev4j</url>
+    <connection>scm:git:https://github.com/llmjava/smoldev4j.git</connection>
+  </scm>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+
+</project>
