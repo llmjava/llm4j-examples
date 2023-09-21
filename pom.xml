@@ -15,6 +15,7 @@
   <modules>
     <module>news-article-recommender</module>
     <module>junior-developer</module>
+    <module>palm-examples</module>
   </modules>
 
 
@@ -28,6 +29,11 @@
     <dependency>
       <groupId>com.github.llmjava</groupId>
       <artifactId>junior-developer</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.llmjava</groupId>
+      <artifactId>palm-examples</artifactId>
       <version>${project.version}</version>
     </dependency>
 
