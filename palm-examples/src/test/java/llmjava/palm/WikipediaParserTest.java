@@ -2,7 +2,7 @@ package llmjava.palm;
 
 import java.util.List;
 
-public class WikipediaUtilsTest {
+public class WikipediaParserTest {
     
 
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class WikipediaUtilsTest {
         "\n" +
         "More more text.";
 
-        List<WikipediaUtils.Section> sections = WikipediaUtils.extractSections(wikiText);
+        List<WikipediaParser.Section> sections = WikipediaParser.extractSections(wikiText);
         System.out.println(sections);
     }
 }

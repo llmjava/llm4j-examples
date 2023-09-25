@@ -7,7 +7,10 @@ import java.util.regex.Matcher;
 import java.util.List;
 import java.util.ArrayList;
 
-public class WikipediaUtils {
+/*
+ * Parse a wikipedia page to extarct all sections within a page.
+ */
+public class WikipediaParser {
 
     public static class Section {
         int level;
@@ -24,7 +27,9 @@ public class WikipediaUtils {
         }
     }
 
-    // Define a method that takes a Wikipedia text as a parameter and prints the sections, their titles and their texts
+    /*
+     * Define a method that takes a Wikipedia text as a parameter and prints the sections, their titles and their texts
+     */
     public static List<Section> extractSections(String wikiText) {
         List<Section> sections = new ArrayList<>();
         // Define a regular expression pattern that matches the section headers

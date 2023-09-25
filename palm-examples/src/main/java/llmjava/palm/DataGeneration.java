@@ -41,7 +41,7 @@ public class DataGeneration {
         return LLM4J.getLanguageModel(config, new PaLMLanguageModel.Builder());
     }
 
-    public static String generate(LanguageModel palm, WikipediaUtils.Section section) {
+    public static String generate(LanguageModel palm, WikipediaParser.Section section) {
         String jsoString = null;
         try {
             String text = section.title + ", " + section.text;
@@ -65,7 +65,7 @@ public class DataGeneration {
         Wikipedia wiki = new Wikipedia();
         List<Document> results = wiki.search("Ibn Battuta");
         String wikiText = results.get(0).getText();
-        List<WikipediaUtils.Section> sections = WikipediaUtils.extractSections(wikiText);
+        List<WikipediaParser.Section> sections = WikipediaParser.extractSections(wikiText);
 
         Random rnd = new Random(123);
         List<Question> questions = new ArrayList<>();
@@ -76,7 +76,7 @@ public class DataGeneration {
         for (int i=0; i<5; i++) {
             System.out.println("================= Section =================");
             int idx = rnd.nextInt(sections.size());
-            WikipediaUtils.Section section = sections.get(idx);
+            WikipediaParser.Section section = sections.get(idx);
             System.out.println(section.title + ", " + section.text);
             // generate questions
             for (int j=0; j<2; j++) {
