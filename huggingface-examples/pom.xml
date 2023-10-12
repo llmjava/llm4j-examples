@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.github.llmjava</groupId>
+  <artifactId>huggingface-examples</artifactId>
+  <packaging>jar</packaging>
+  <version>0.0-SNAPSHOT</version>
+
+  <name>Hugging Face Text Generation examples</name>
+  <description>Examples showcasing how to use hf_text_generation</description>
+  <url>http://github.com/llmjava/llm4j-examples</url>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <hf_text_generation.version>f290be4452</hf_text_generation.version>
+  </properties>
+
+  <dependencies>
+  	<dependency>
+	    <groupId>com.github.llmjava</groupId>
+	    <artifactId>hf_text_generation</artifactId>
+	    <version>${hf_text_generation.version}</version>
+	  </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/llmjava/smoldev4j</url>
+    <connection>scm:git:https://github.com/llmjava/smoldev4j.git</connection>
+  </scm>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+
+</project>
