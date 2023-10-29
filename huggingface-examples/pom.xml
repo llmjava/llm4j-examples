@@ -9,8 +9,8 @@
   <packaging>jar</packaging>
   <version>0.0-SNAPSHOT</version>
 
-  <name>Hugging Face Text Generation examples</name>
-  <description>Examples showcasing how to use hf_text_generation</description>
+  <name>Hugging Face inference examples</name>
+  <description>Examples showcasing how to use inference API for text generation and embeddings</description>
   <url>http://github.com/llmjava/llm4j-examples</url>
 
   <properties>
@@ -19,6 +19,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <hf_text_generation.version>f290be4452</hf_text_generation.version>
+    <hf_text_embeddings.version>7f3884ef45</hf_text_embeddings.version>
   </properties>
 
   <dependencies>
@@ -26,6 +27,11 @@
 	    <groupId>com.github.llmjava</groupId>
 	    <artifactId>hf_text_generation</artifactId>
 	    <version>${hf_text_generation.version}</version>
+	  </dependency>
+  	<dependency>
+	    <groupId>com.github.llmjava</groupId>
+	    <artifactId>hf_text_embeddings</artifactId>
+	    <version>${hf_text_embeddings.version}</version>
 	  </dependency>
   </dependencies>
 
