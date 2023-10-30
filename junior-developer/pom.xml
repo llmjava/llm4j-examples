@@ -20,7 +20,7 @@
 
     <llm4j.version>0.1</llm4j.version>
     <commons.version>2.9.0</commons.version>
-    <commons-text.version>1.10.0</commons-text.version>
+    <commons-text.version>1.11.0</commons-text.version>
 
     <palm.version>0.0.0-SNAPSHOT</palm.version>
     <grpc-okhttp.version>1.56.1</grpc-okhttp.version>
